@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RxJS drag and drop</title>
+    <style>
+      #div1 {
+        width: 100px;
+        height: 169px;
+        padding: 10px;
+        border: 1px solid #aaaaaa;
+      }
+      .box {
+        position: absolute;
+        cursor: pointer;
+        user-select: none;
+        width: 100px;
+        height: 169px;
+        background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo_Mq107hLpfA_dqTzwmdgzn0shRItRpnMIw&usqp=CAU')
+          no-repeat 100%;
+        background-size: cover;
+      }
+      .box:active {
+        background: url('https://i.imgur.com/FWvEMYQ.png') no-repeat 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+    <script>
+      function allowDrop(ev) {
+        ev.preventDefault();
+      }
+
+      function drag(ev) {
+        ev.dataTransfer.setData('text', ev.target.id);
+      }
+
+      function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData('text');
+        ev.target.appendChild(document.getElementById(data));
+      }
+    </script>
+  </body>
+</html>
