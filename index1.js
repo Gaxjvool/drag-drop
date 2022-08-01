@@ -84,5 +84,3 @@ dragMove$.subscribe((move) => {
 //     })
 //   ),
 // ]).subscribe();
-
-
